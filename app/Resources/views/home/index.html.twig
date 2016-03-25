@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% set seo_title = 'Insulter | Equip yourself with state of the art insults' %}
+
+{% block body %}
+    <div class="jumbotron">
+        <h1>Welcome to Insulter</h1>
+        <p class="lead">We have some basdass insults for you...  to use.</p>
+
+        <hr>
+        <br />
+
+        <form action="{{ path('insult') }}">
+            <div class="form-group">
+                    <label for="insult-level">Pick a level of insult</label>
+
+                    <select name="" id="insult-level" class="form-control">
+                        <option class="form-control" value="posh">Posh</option>
+                        <option class="form-control" value="normal">Normal</option>
+                        <option class="form-control" value="brutal">Brutal</option>
+                    </select>
+            </div>
+
+            <input type="submit" id="insult" class="btn btn-success" value="Insult">
+
+        </form>
+    </div>
+
+    {% if insult is defined %}
+
+        <p><strong>You are being insulted</strong></p>
+
+    {% endif %}
+
+{% endblock %}

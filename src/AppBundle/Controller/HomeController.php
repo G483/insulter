@@ -11,6 +11,14 @@ class HomeController extends Controller
 {
     public function indexAction(Request $request)
     {
-        return new Response('Welcome home');
+        return $this->render('home/index.html.twig');
+    }
+
+    public function insultAction(Request $request)
+    {
+        return $this->render(
+            'home/index.html.twig',
+            array('insult' => true)
+            );
     }
 }

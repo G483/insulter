@@ -5,3 +5,7 @@ app:
 index:
     path: /
     defaults: { _controller: AppBundle:Home:index }
+
+insult:
+    path: /insult
+    defaults: { _controller: AppBundle:Home:insult }

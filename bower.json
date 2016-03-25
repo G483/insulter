@@ -1,0 +1,21 @@
+{
+  "name": "insulter",
+  "homepage": "https://github.com/G483/insulter",
+  "authors": [
+    "Gabe <gabrijel.web@gmail.com>"
+  ],
+  "description": "Aplication that insults",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
