@@ -21,7 +21,6 @@ framework:
     #serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
-        #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
     trusted_proxies: ~
@@ -42,12 +41,15 @@ twig:
 doctrine:
     dbal:
         driver:   pdo_mysql
-        host:     "localhost"
+        host:     "%database_host%"
         port:     "%database_port%"
-        dbname:   "insulter"
-        user:     "root"
-        password: ""
+        dbname:   "%database_name%"
+        user:     "%database_user%"
+        password: "%database_password%"
         charset:  UTF8
+        default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_unicode_ci
         # if using pdo_sqlite as your database driver:
         #   1. add the path in parameters.yml
         #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
