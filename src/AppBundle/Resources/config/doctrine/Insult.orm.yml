@@ -1,0 +1,17 @@
+AppBundle\Entity\Insult:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\InsultRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        content:
+            type: string
+            length: 255
+        level:
+            type: smallint
+    lifecycleCallbacks: {  }

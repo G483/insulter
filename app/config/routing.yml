@@ -9,3 +9,13 @@ index:
 insult:
     path: /insult
     defaults: { _controller: AppBundle:Home:insult }
+
+create:
+    path:      /create
+    # uses a special syntax to point to the controller - see note below
+    defaults:  { _controller: AppBundle:Home:create }
+
+edit:
+    path:      /edit/{id}
+    # uses a special syntax to point to the controller - see note below
+    defaults:  { _controller: AppBundle:Home:edit }
