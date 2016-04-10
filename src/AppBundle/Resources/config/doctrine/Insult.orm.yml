@@ -9,7 +9,7 @@ AppBundle\Entity\Insult:
             generator:
                 strategy: AUTO
     fields:
-        content:
+        insult:
             type: string
             length: 255
         level:

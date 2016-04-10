@@ -2,11 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Insult;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class HomeController extends Controller
 {
@@ -15,18 +16,62 @@ class HomeController extends Controller
         return $this->render('@App/home/index.html.twig');
     }
 
-    public function insultAction()
+    // Move this to a separate createInsult class
+
+    public function newAction(Request $request)
     {
-        return $this->render(
-            'home/index.html.twig',
-            array('insult' => true)
-            );
+        $insult = new Insult();
+
+        $form = $this->createFormBuilder($insult)
+            // FIX: RENAME TO CONTENT AND RECREATE TABLE ACCORDINGLY
+                // FIX: CHANGE TO TEXT AREA
+            ->add('insult', TextType::class, ['label' => 'Write your insult'])
+            ->add('level', ChoiceType::class,
+                [
+                    'label' => 'Set insult level',
+                    'choices' => [
+                        'Posh' => 1,
+                        'Normal' => 2,
+                        'Brutal' => 3,
+                    ],
+                ]
+            )
+            ->add('save', SubmitType::class, ['label' => 'Create Insult'])
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        // Add validation
+        if($form->isSubmitted() && $form->isValid()) {
+
+            $insultContent = $form['insult']->getData();
+            $level = $form['level']->getData();
+
+            $insult->setInsult($insultContent);
+            $insult->setLevel($level);
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($insult);
+            $em->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('AppBundle:forms:new.html.twig',
+            [
+                'form' => $form->createView(),
+            ]
+        );
     }
+
+
+
+    // Create admin controller and move everything below to that controller
 
     public function listAction()
     {
         // List all insults by id - no time or date ordering. Possible ordering by level
-        // Create admin controller and move everything below to that controller
     }
 
     public function createAction()

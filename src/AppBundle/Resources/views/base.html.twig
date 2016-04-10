@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ seo_title }}</title>
+        <title>{{ seo_title|default('Page title') }}</title>
 
         <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/less/bootstrap.less') }}">
@@ -26,7 +26,7 @@
                         <li role="presentation" class="active"><a href="/">Home</a></li>
                         <li role="presentation"><a href="#">Register</a></li>
                         <li role="presentation"><a href="#">Login</a></li>
-                        <li role="presentation"><a href="{{ path('create') }}">Create</a></li>
+                        <li role="presentation"><a href="{{ path('new') }}">New</a></li>
                     </ul>
                 </nav>
                 <h3 class="text-muted">Insulter</h3>
