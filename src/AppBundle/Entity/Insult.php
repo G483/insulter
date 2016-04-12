@@ -15,7 +15,7 @@ class Insult
     /**
      * @var string
      */
-    private $insult;
+    private $content;
 
     /**
      * @var int
@@ -34,27 +34,27 @@ class Insult
     }
 
     /**
-     * Set insult
+     * Set content
      *
-     * @param string $insult
+     * @param string $content
      *
      * @return Insult
      */
-    public function setInsult($insult)
+    public function setContent($content)
     {
-        $this->insult = $insult;
+        $this->content = $content;
 
         return $this;
     }
 
     /**
-     * Get Insult
+     * Get content
      *
      * @return string
      */
-    public function getInsult()
+    public function getContent()
     {
-        return $this->insult;
+        return $this->content;
     }
 
     /**
@@ -62,7 +62,7 @@ class Insult
      *
      * @param integer $level
      *
-     * @return Integer
+     * @return Insult
      */
     public function setLevel($level)
     {

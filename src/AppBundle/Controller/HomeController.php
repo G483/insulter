@@ -4,8 +4,9 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Insult;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -16,19 +17,27 @@ class HomeController extends Controller
         return $this->render('@App/home/index.html.twig');
     }
 
-    // Move this to a separate createInsult class
+    //Move this to a separate createInsult class
 
     public function newAction(Request $request)
     {
         $insult = new Insult();
 
         $form = $this->createFormBuilder($insult)
-            // FIX: RENAME TO CONTENT AND RECREATE TABLE ACCORDINGLY
-                // FIX: CHANGE TO TEXT AREA
-            ->add('insult', TextType::class, ['label' => 'Write your insult'])
+            ->add('content', TextareaType::class,
+                [
+                'label' => 'Write your insult',
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
+                ]
+            )
             ->add('level', ChoiceType::class,
                 [
                     'label' => 'Set insult level',
+                    'attr' => [
+                        'class' => 'form-control',
+                    ],
                     'choices' => [
                         'Posh' => 1,
                         'Normal' => 2,
@@ -36,7 +45,14 @@ class HomeController extends Controller
                     ],
                 ]
             )
-            ->add('save', SubmitType::class, ['label' => 'Create Insult'])
+            ->add('save', SubmitType::class,
+                [
+                    'label' => 'Create Insult',
+                    'attr' => [
+                        'class' => 'btn btn-primary',
+                    ]
+                ]
+            )
             ->getForm();
 
         $form->handleRequest($request);
@@ -44,10 +60,10 @@ class HomeController extends Controller
         // Add validation
         if($form->isSubmitted() && $form->isValid()) {
 
-            $insultContent = $form['insult']->getData();
+            $content = $form['content']->getData();
             $level = $form['level']->getData();
 
-            $insult->setInsult($insultContent);
+            $insult->setContent($content);
             $insult->setLevel($level);
 
             $em = $this->getDoctrine()->getManager();
@@ -55,7 +71,7 @@ class HomeController extends Controller
             $em->persist($insult);
             $em->flush();
 
-            return $this->redirectToRoute('index');
+            return new Response('Successfully saved');
         }
 
         return $this->render('AppBundle:forms:new.html.twig',
@@ -64,8 +80,6 @@ class HomeController extends Controller
             ]
         );
     }
-
-
 
     // Create admin controller and move everything below to that controller
 

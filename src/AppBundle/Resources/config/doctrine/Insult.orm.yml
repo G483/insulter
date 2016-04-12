@@ -9,9 +9,9 @@ AppBundle\Entity\Insult:
             generator:
                 strategy: AUTO
     fields:
-        insult:
+        content:
             type: string
             length: 255
         level:
-            type: smallint
+            type: integer
     lifecycleCallbacks: {  }
