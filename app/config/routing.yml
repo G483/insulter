@@ -8,12 +8,13 @@ index:
 
 create:
     path:      /create
-    defaults:  { _controller: AppBundle:Home:create }
+    defaults:  { _controller: AppBundle:Admin:create }
 
 edit:
     path:      /edit/{id}
     defaults:  { _controller: AppBundle:Home:edit }
 
-new:
-    path:      /new
-    defaults:  { _controller: AppBundle:Home:new }
+
+generate:
+    path: /generate
+    defaults: { _controller: AppBundle:Home:generate }

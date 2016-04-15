@@ -1,33 +1,31 @@
-{% extends 'AppBundle::base.html.twig' %}
-
-{% set seo_title = 'Add insults to our database' %}
+{% extends '@App/base.html.twig' %}
 
 {% block body %}
 
-    <div class="jumbotron">
-        <p class="lead">Create an insult</p>
+<h1>Create new insult form</h1>
 
-        <hr>
-        <br />
 
-        <form action="">
-            <div class="form-group">
-                <label for="insult">Write an insult</label>
-                <textarea class="form-control" id="insult" rows="3"></textarea>
-            </div>
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
 
-            <div class="form-group">
-                <label for="level">Describe insult level</label>
-                <select class="form-control" name="level" id="level">
-                    <option class="form-control" value="1">Posh</option>
-                    <option class="form-control" value="2">Normal</option>
-                    <option class="form-control" value="3">Brutal</option>
-                </select>
-                <br />
-                <input type="submit" value="Create" class="btn btn-primary">
-            </div>
-        </form>
+    <div class="form-group">
+        {{ form_label(form.content) }}
+        {{ form_errors(form.content) }}
+        {{ form_widget(form.content) }}
     </div>
 
+    <div class="form-group">
+        {{ form_label(form.level) }}
+        {{ form_errors(form.level) }}
+        {{ form_widget(form.level) }}
+    </div>
+
+    <div>
+        {{ form_widget(form.save) }}
+    </div>
+
+    {{ form_end(form) }}
+
+    <br />
 
 {% endblock %}
