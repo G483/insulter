@@ -12,7 +12,7 @@ create:
 
 edit:
     path:      /edit/{id}
-    defaults:  { _controller: AppBundle:Home:edit }
+    defaults:  { _controller: AppBundle:Admin:edit }
 
 
 generate:

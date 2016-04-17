@@ -76,5 +76,10 @@ class AdminController extends Controller
             ]
         );
     }
+    
+    public function editAction($id) 
+    {
+        // Edit logic
+    }
 
 }

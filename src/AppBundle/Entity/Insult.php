@@ -81,4 +81,3 @@ class Insult
         return $this->level;
     }
 }
-

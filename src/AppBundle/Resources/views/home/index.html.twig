@@ -10,28 +10,34 @@
         <hr>
         <br />
 
-        <form action="">
-            <div class="form-group">
-                    <label for="insult-level">Pick a level of insult</label>
+        {% if form is defined %}
 
-                    <select name="" id="insult-level" class="form-control">
-                        <option class="form-control" value="posh">Posh</option>
-                        <option class="form-control" value="normal">Normal</option>
-                        <option class="form-control" value="brutal">Brutal</option>
-                    </select>
+            {{ form_start(form) }}
+            {{ form_errors(form) }}
+
+            <div class="form-group">
+                {{ form_label(form.level) }}
+                {{ form_errors(form.level) }}
+                {{ form_widget(form.level) }}
             </div>
 
-            <input type="submit" id="insult" class="btn btn-success" value="Insult">
+            <div>
+                {{ form_widget(form.save) }}
+            </div>
 
-        </form>
-    </div>
-
-    <div style="background-color: lightgray">
-        {% if insult is defined %}
-
-            <p></p>
+            {{ form_end(form) }}
 
         {% endif %}
+
+        <br />
+
+        {% if level is defined %}
+
+            <p class="bg-primary"> Level is: {{ level }}</p>
+
+        {% endif %}
+
+
     </div>
 
 {% endblock %}
